@@ -6,20 +6,22 @@
 <title>Reva — A billionaire's team. By text.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black:    #0a0a0a;
-    --black-2:  #141414;
-    --black-3:  #1c1c1c;
-    --bone:     #f4f1ea;
-    --bone-d:   #d6d2c4;
-    --bone-dim: #8a8576;
-    --gold-1:   #e8cd95;
-    --gold-2:   #c9a559;
-    --gold-3:   #b08a3e;
-    --rule:     rgba(244, 241, 234, 0.05);
-    --rule-2:   rgba(244, 241, 234, 0.12);
+    --black:    #15110d;
+    --black-2:  #1c1814;
+    --black-3:  #28221c;
+    --bone:     #ebe2cf;
+    --bone-d:   #c4baa3;
+    --bone-dim: #7d7363;
+    --gold-1:   #c9a564;
+    --gold-2:   #a8854a;
+    --gold-3:   #7a5f30;
+    --rule:     rgba(235, 226, 207, 0.04);
+    --rule-2:   rgba(235, 226, 207, 0.10);
+    --serif:    'Fraunces', 'Times New Roman', serif;
+    --sans:     'Geist', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,9 +40,9 @@
   }
 
   h1, h2, h3 {
-    font-family: 'Geist', sans-serif;
+    font-family: var(--serif);
     font-weight: 300;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
   }
 
   /* Section connector — links sections visually */
@@ -94,18 +96,17 @@
   .nav-menu span:nth-child(1) { width: 100%; }
   .nav-menu span:nth-child(2) { width: 70%; }
   .logo-mark {
-    font-family: 'Geist', sans-serif;
-    font-weight: 300;
-    font-size: 22px;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
     color: var(--bone);
     text-decoration: none;
     letter-spacing: -0.01em;
     display: inline-block;
-    transition: color 0.3s, letter-spacing 0.3s;
+    transition: opacity 0.3s;
   }
   .logo-mark:hover {
-    color: var(--bone);
-    letter-spacing: 0;
     opacity: 0.7;
   }
   .nav-r-wrap { display: flex; justify-content: flex-end; }
@@ -130,18 +131,17 @@
   }
   .hero-photo {
     position: absolute; inset: 0; z-index: 1;
-    background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wgARCAB4AKADASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAYBBQcEAwL/xAAaAQACAwEBAAAAAAAAAAAAAAAAAQIDBAUG/9oADAMBAAIQAxAAAAGw3Z6r9ARBxRb6AAAAAAAAAAAAAAAAAAAAAAAAAAA//8QAJBAAAQQBAwQDAQAAAAAAAAAAAgABAwQFERIxFCEiQRMyM1H/2gAIAQEAAQUC/CO0FYbF8M0/UC1Z4Cw3FPAUbn8oREAdQQ02nEnnnaUm5JtgxDtcDyD7a0jGWPL1nFvDVsjsH9F+VK+tA/1Ld1XqxTRRP6TaxSaP0XLE+NZ2yU0V/HQXRsTZ2N6UYf03YF/D//EABoRAAMBAQEBAAAAAAAAAAAAAAABERIQIVH/2gAIAQMBAT8B7H4qY+hRvR7gjrL09JGw0fOC9PZF1//EABoRAAICAwAAAAAAAAAAAAAAAAARARASIVH/2gAIAQIBAT8BrFhbDsJpIuRWf//EAC4QAAEDAgQEBQMFAAAAAAAAAAEAAhEDIRASMUEEEyJRMmFxgZEgQqEjUmKx0f/aAAgBAQAGPwI3jKGVdTzVL+kJgBlVT0yVbpheVOpLIYCRdMaDJWVtFwWDt8h8QU4wIVgGxKAqFwj4XEZRDc31Vmi68zdPzVTI3VW3DOJ8nIw0fhHbzWQiLT91nDhxHBZ20uHIcdRzVlDGNa3o+yvLmrhHAWNQ/wAtVwxwqj5CytMD8oYHmnDXFRk/Ipg/gz7L4WhIfSO//8QAJBABAAICAQQBBQEAAAAAAAAAAQARITFBEFFhcZGBobHB8NH/2gAIAQEAAT8h/aEoiuvrA0umpYEoxkW0wd3K9qFbnE1yGbkqHcS3X4Ys3jYbgMz9wDX9QKBT6gbxRmEHBs2GVR2g5uRtl04g0r5cTcrBvUq4L7gYhFBJa6kt9P2hGtxZsh/qsoTJW5Vj2YjCa1n+RwWB23Khwh3wsoeUWbX64nUWuvYqEAyhSJM85DiZ0IuYQGsRRYvOLITTuMxF95fLD25xLodCOxkz7ig1YCPeXKBPUKUBeBb8KNNVTYNj4/cnwXcd/FfbHPMNZRPmH5dPIhBGiq2Jh2C4CvRDDUSU+iDuT//aAAwDAQACAAMAAAAQA8Vq8zwgg88s888888888888888888//EABwRAQACAgMBAAAAAAAAAAAAAAEAESExQVFhcf/aAAgBAwEBPxAYR0Q/SnSvJV23BalWofx21H/LAHkcTzTC2GptB5G6Z//EABwRAQACAwEBAQAAAAAAAAAAAAEAESExQVFxgf/aAAgBAgEBPxBV4XYYrBDiuVQUd0+ynjOoFoOhepSLPyP3PuG1B9Fvk//EACQQAQEAAgEFAAEFAAAAAAAAAAERACExQVFhcYGhEPCRsdHx/9oACAEBAAE/EJ29BZTu9BrpkWeAS/4XBLA1eK4nXwOf6cAQqUKpx8z0Gn0HzQwPATFArRb53PWkQrYAEr4PWC2QXWAcNDpuCIvtaUqJKabwBQOhxv8AfFxUtPHGJG0ANHdfQ5wRkAtt5+/g4ImlA7L+Zj6hAxsrMCeGNXTVOBOfrLCKsi0yBs2Ne94cHNi7ALpOEx2TlfAlLeucBNSOugLeQ2ZG8AFsRAOwCedOAVEpgQUACSlh5Eu8aoDMSHO2vGCWRYSaApCdDZkAaEBpyHvkynEaXn41pwM5+8KLKw8x+lgvvA//2Q==');
-    background-size: cover;
-    background-position: center;
-    background-color: #0a0a0a;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(168, 133, 74, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(168, 133, 74, 0.05) 0%, transparent 55%),
+      linear-gradient(180deg, #1f1812 0%, #15110d 50%, #100c08 100%);
     will-change: transform;
-    filter: blur(0.5px);
   }
   .hero-overlay {
     position: absolute; inset: 0; z-index: 2;
     background:
-      radial-gradient(ellipse at center 60%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 100%),
-      linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.45) 35%, rgba(10,10,10,0.75) 100%);
+      radial-gradient(ellipse at center 60%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%),
+      linear-gradient(180deg, rgba(21,17,13,0.4) 0%, rgba(21,17,13,0.3) 35%, rgba(21,17,13,0.7) 100%);
   }
   .hero-content {
     position: absolute; inset: 0; z-index: 3;
@@ -149,9 +149,14 @@
     padding: 14vh 36px 0; text-align: center;
   }
   .hero h1 {
-    font-family: 'Geist', sans-serif; font-weight: 400; color: var(--bone);
-    font-size: clamp(40px, 8vw, 144px); line-height: 1.05; letter-spacing: -0.04em;
-    max-width: 1400px; text-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+    font-family: var(--serif);
+    font-weight: 300;
+    color: var(--bone);
+    font-size: clamp(44px, 7.4vw, 124px);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    max-width: 1400px;
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
   }
   .hero h1 .l1 {
     display: block; opacity: 0;
@@ -159,13 +164,11 @@
   }
   .hero h1 .l2 {
     display: block; opacity: 0;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-1);
     animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
-    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-    text-shadow: none;
-    filter: drop-shadow(0 4px 30px rgba(201, 165, 89, 0.25));
-    padding-bottom: 0.12em;
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
   }
   .hero-cta {
     margin-top: 56px; font-family: 'Geist', sans-serif; font-size: 11.5px;
@@ -186,7 +189,7 @@
   .hero-cta-secondary {
     font-family: 'Geist', sans-serif; font-size: 10.5px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase;
-    color: rgba(244, 241, 234, 0.55); text-decoration: none;
+    color: rgba(235, 226, 207, 0.55); text-decoration: none;
     opacity: 0; animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.05s both;
     transition: color 0.3s, letter-spacing 0.4s;
   }
@@ -204,7 +207,7 @@
     font-size: 9.5px;
     letter-spacing: 0.36em;
     text-transform: uppercase;
-    color: rgba(244, 241, 234, 0.4);
+    color: rgba(235, 226, 207, 0.4);
     font-weight: 500;
     opacity: 0;
     animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.4s both, bob 2.8s ease-in-out 2.6s infinite;
@@ -280,11 +283,11 @@
   }
 
   .pain-bridge {
-    font-family: 'Geist', sans-serif;
+    font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(28px, 3.4vw, 52px);
-    line-height: 1.2;
-    letter-spacing: -0.028em;
+    font-size: clamp(24px, 3vw, 44px);
+    line-height: 1.3;
+    letter-spacing: -0.018em;
     color: var(--bone);
     max-width: 880px;
     margin: 0 auto;
@@ -292,13 +295,10 @@
   }
   .pain-bridge .em {
     display: block;
-    margin-top: 16px;
+    margin-top: 14px;
     font-style: italic;
     font-weight: 300;
-    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-    padding-bottom: 0.12em;
+    color: var(--gold-1);
   }
 
   @media (max-width: 720px) {
@@ -319,22 +319,19 @@
   }
   .promise-inner { max-width: 1100px; margin: 0 auto; }
   .promise-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 200;
-    font-size: clamp(36px, 5vw, 76px);
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(34px, 4.6vw, 72px);
     line-height: 1.1;
-    letter-spacing: -0.038em;
+    letter-spacing: -0.022em;
     color: var(--bone);
   }
   .promise-h .em {
     display: block;
-    margin-top: 14px;
+    margin-top: 12px;
     font-style: italic;
     font-weight: 300;
-    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-    padding-bottom: 0.12em;
+    color: var(--gold-1);
   }
   .promise-sub {
     margin-top: 56px;
@@ -372,15 +369,15 @@
     margin-bottom: 80px;
   }
   .demo-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 200;
-    font-size: clamp(32px, 4vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.035em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: var(--bone);
     margin-bottom: 24px;
   }
-  .demo-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .demo-h .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
   .demo-sub {
     font-family: 'Geist', sans-serif;
     font-weight: 300;
@@ -395,10 +392,10 @@
     max-width: 380px;
     width: 100%;
     margin: 0 auto;
-    background: #000; border: 8px solid #1a1a1a;
+    background: #0a0805; border: 8px solid #1f1a14;
     border-radius: 44px; padding: 0; position: relative;
     box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 0 1px rgba(235, 226, 207, 0.03),
       0 60px 120px rgba(0, 0, 0, 0.6),
       0 30px 60px rgba(0, 0, 0, 0.4);
     overflow: hidden;
@@ -415,79 +412,95 @@
   .phone-notch {
     position: absolute; top: 8px; left: 50%;
     transform: translateX(-50%);
-    width: 92px; height: 28px; background: #000;
+    width: 92px; height: 28px; background: #0a0805;
     border-radius: 16px; z-index: 5;
   }
   .phone-bar {
     display: flex; flex-direction: column; align-items: center;
-    padding: 8px 16px 14px;
-    border-bottom: 0.5px solid rgba(244, 241, 234, 0.08);
-    gap: 6px; background: rgba(20, 20, 20, 0.6);
+    padding: 10px 16px 16px;
+    border-bottom: 0.5px solid var(--rule-2);
+    gap: 8px;
+    background: var(--black-2);
     backdrop-filter: blur(20px);
   }
   .phone-avatar {
     width: 44px; height: 44px; border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, var(--gold-2) 0%, #5a3f15 100%);
+    background: radial-gradient(circle at 30% 30%, var(--gold-1) 0%, var(--gold-3) 100%);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Geist', sans-serif; font-size: 16px; font-weight: 500;
-    color: #fff; letter-spacing: -0.02em; margin-bottom: 4px;
-    border: 0.5px solid rgba(244, 241, 234, 0.1);
+    font-family: var(--serif); font-size: 20px; font-weight: 400;
+    font-style: italic;
+    color: var(--black); letter-spacing: -0.01em; margin-bottom: 2px;
+    border: 0.5px solid rgba(237, 232, 222, 0.06);
   }
   .phone-name {
-    font-family: 'Geist', sans-serif; font-weight: 500;
-    font-size: 13px; color: var(--bone); letter-spacing: -0.01em;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--bone);
+    letter-spacing: -0.005em;
   }
   .phone-status {
     font-size: 10px; color: var(--bone-dim); font-weight: 400;
-    display: flex; align-items: center; gap: 4px;
+    display: flex; align-items: center; gap: 6px;
+    letter-spacing: 0.04em;
   }
   .phone-status::before {
     content: ''; width: 5px; height: 5px;
-    border-radius: 50%; background: #4ade80;
-    animation: pulse 2s infinite;
+    border-radius: 50%; background: var(--gold-1);
+    animation: pulse 2.4s infinite;
+    box-shadow: 0 0 8px rgba(201, 165, 100, 0.5);
   }
   .chat {
     min-height: 380px; display: flex; flex-direction: column;
-    gap: 4px; padding: 16px 12px 24px; background: #000;
+    gap: 4px; padding: 16px 12px 24px; background: var(--black);
   }
   .bubble {
-    max-width: 76%; padding: 9px 14px; border-radius: 18px;
-    font-size: 14.5px; line-height: 1.32;
+    max-width: 76%; padding: 10px 14px; border-radius: 18px;
+    font-size: 14.5px; line-height: 1.35;
     opacity: 0; transform: translateY(6px);
     animation: bubbleIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    font-weight: 400; letter-spacing: -0.005em;
+    font-weight: 300; letter-spacing: -0.005em;
   }
   .bubble.out {
     align-self: flex-end;
-    background: linear-gradient(135deg, #2c7eff 0%, #1f5ed9 100%);
-    color: #fff; border-bottom-right-radius: 4px; margin-top: 2px;
+    background: var(--bone);
+    color: var(--black);
+    border-bottom-right-radius: 4px;
+    margin-top: 2px;
+    font-weight: 400;
   }
   .bubble.in {
-    align-self: flex-start; background: #1f1f1f;
-    color: var(--bone); border-bottom-left-radius: 4px; margin-top: 2px;
+    align-self: flex-start;
+    background: var(--black-3);
+    color: var(--bone);
+    border-bottom-left-radius: 4px;
+    margin-top: 2px;
   }
   .bubble.in em {
     font-style: normal; color: var(--bone-dim); font-size: 10px;
-    display: block; margin-top: 6px; font-weight: 400; opacity: 0.7;
+    display: block; margin-top: 6px; font-weight: 400; opacity: 0.65;
+    letter-spacing: 0.04em;
   }
   .typing {
-    align-self: flex-start; display: flex; gap: 3px;
-    padding: 11px 14px; background: #1f1f1f;
+    align-self: flex-start; display: flex; gap: 4px;
+    padding: 12px 14px; background: var(--black-3);
     border-radius: 18px; border-bottom-left-radius: 4px;
     opacity: 0;
     animation: bubbleIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
   }
   .typing.from-member {
     align-self: flex-end;
-    background: linear-gradient(135deg, #2c7eff 0%, #1f5ed9 100%);
-    border-bottom-right-radius: 4px; border-bottom-left-radius: 18px;
+    background: var(--bone);
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 18px;
   }
   .typing span {
     width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(244, 241, 234, 0.7);
+    background: rgba(237, 232, 222, 0.6);
     animation: dot 1.3s infinite ease-in-out;
   }
-  .typing.from-member span { background: rgba(255, 255, 255, 0.7); }
+  .typing.from-member span { background: rgba(10, 10, 10, 0.4); }
   .typing span:nth-child(2) { animation-delay: 0.2s; }
   .typing span:nth-child(3) { animation-delay: 0.4s; }
 
@@ -497,8 +510,8 @@
     30% { transform: scale(1); opacity: 1; }
   }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
-    50%      { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+    0%, 100% { box-shadow: 0 0 8px rgba(201, 165, 100, 0.5); }
+    50%      { box-shadow: 0 0 14px rgba(201, 165, 100, 0.8); }
   }
   .demo-dots {
     display: flex; justify-content: center; gap: 8px; margin-top: 32px;
@@ -576,7 +589,7 @@
     gap: 28px;
   }
   .vs-col.us {
-    background: radial-gradient(ellipse at top, rgba(201, 165, 89, 0.04) 0%, transparent 70%);
+    background: radial-gradient(ellipse at top, rgba(168, 133, 74, 0.04) 0%, transparent 70%);
   }
   .vs-label {
     font-family: 'Geist', sans-serif; font-size: 10.5px;
@@ -661,15 +674,15 @@
     margin-bottom: 100px;
   }
   .manifest-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 200;
-    font-size: clamp(32px, 4vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.035em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: var(--bone);
     margin-bottom: 28px;
   }
-  .manifest-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .manifest-h .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
   .manifest-sub {
     font-family: 'Geist', sans-serif;
     font-weight: 300;
@@ -693,7 +706,7 @@
     transition: background 0.5s;
   }
   .manifest-row:hover {
-    background: rgba(244, 241, 234, 0.01);
+    background: rgba(235, 226, 207, 0.01);
   }
 
   .manifest-domain {
@@ -710,14 +723,14 @@
     font-weight: 400;
   }
   .manifest-name {
-    font-family: 'Geist', sans-serif;
-    font-weight: 200;
-    font-size: clamp(28px, 2.6vw, 38px);
-    line-height: 1.1;
-    letter-spacing: -0.035em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 2.4vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--bone);
   }
-  .manifest-name .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .manifest-name .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
   .manifest-tag {
     font-family: 'Geist', sans-serif;
     font-size: 14px;
@@ -815,14 +828,14 @@
     margin-bottom: 100px;
   }
   .proof-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 200;
-    font-size: clamp(32px, 4vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.035em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.8vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: var(--bone);
   }
-  .proof-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .proof-h .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
 
   .proof-grid {
     display: grid;
@@ -836,18 +849,23 @@
     text-align: center;
   }
   .proof-num {
-    font-family: 'Geist', sans-serif; font-weight: 200;
-    font-size: clamp(72px, 9vw, 132px);
-    line-height: 1; letter-spacing: -0.05em;
-    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 60%, var(--gold-3) 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(64px, 8vw, 116px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--bone);
     margin-bottom: 24px;
   }
   .proof-num .unit {
-    font-size: 0.28em; color: var(--bone-dim);
-    font-weight: 400; letter-spacing: 0.02em; margin-left: 4px;
-    -webkit-text-fill-color: var(--bone-dim);
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.22em;
+    color: var(--bone-dim);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-left: 6px;
+    text-transform: uppercase;
   }
   .proof-label {
     font-family: 'Geist', sans-serif; font-size: 10px;
@@ -914,14 +932,14 @@
     margin-bottom: 80px;
   }
   .faq-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 200;
-    font-size: clamp(32px, 4vw, 56px);
-    line-height: 1.1; letter-spacing: -0.035em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 3.8vw, 52px);
+    line-height: 1.12; letter-spacing: -0.02em;
     color: var(--bone);
     margin-bottom: 24px;
   }
-  .faq-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .faq-h .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
   .faq-sub {
     font-family: 'Geist', sans-serif;
     font-weight: 300;
@@ -939,8 +957,8 @@
     border-bottom: 1px solid var(--rule);
     transition: background 0.4s;
   }
-  .faq-item:hover { background: rgba(244, 241, 234, 0.015); }
-  .faq-item.open { background: rgba(244, 241, 234, 0.02); }
+  .faq-item:hover { background: rgba(235, 226, 207, 0.015); }
+  .faq-item.open { background: rgba(235, 226, 207, 0.02); }
 
   .faq-q {
     display: grid;
@@ -1149,15 +1167,15 @@
     margin-bottom: 18px;
   }
   .modal-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 400;
-    font-size: clamp(28px, 3.4vw, 40px);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--bone);
     margin-bottom: 16px;
   }
-  .modal-h .it { font-style: italic; font-weight: 500; }
+  .modal-h .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
   .modal-sub {
     font-family: 'Geist', sans-serif;
     font-weight: 300;
@@ -1293,15 +1311,15 @@
     font-size: 24px;
   }
   .success-h {
-    font-family: 'Geist', sans-serif;
-    font-weight: 400;
-    font-size: clamp(28px, 3.4vw, 40px);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--bone);
     margin-bottom: 18px;
   }
-  .success-h .it { font-style: italic; font-weight: 500; }
+  .success-h .it { font-style: italic; font-weight: 300; color: var(--gold-1); }
   .success-text {
     font-family: 'Geist', sans-serif;
     font-weight: 300;
@@ -1335,7 +1353,7 @@
     content: ''; position: absolute; top: -200px; left: 50%;
     transform: translateX(-50%);
     width: 800px; height: 800px;
-    background: radial-gradient(circle, rgba(201, 165, 89, 0.05) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(168, 133, 74, 0.05) 0%, transparent 60%);
     pointer-events: none;
   }
   .closer-inner {
@@ -1344,10 +1362,12 @@
     gap: 64px; position: relative; z-index: 1;
   }
   .closer-h {
-    font-family: 'Geist', sans-serif; font-weight: 300;
+    font-family: var(--serif);
+    font-weight: 300;
     color: var(--bone);
     font-size: clamp(28px, 4vw, 60px);
-    line-height: 1.18; letter-spacing: -0.03em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     max-width: 100%;
   }
   .closer-h .l1 {
@@ -1358,13 +1378,9 @@
     display: block;
     white-space: nowrap;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 300;
+    color: var(--gold-1);
     margin-top: 6px;
-    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent; color: transparent;
-    filter: drop-shadow(0 4px 30px rgba(201, 165, 89, 0.18));
-    padding-bottom: 0.12em;
   }
   @media (max-width: 600px) {
     .closer-h { font-size: clamp(26px, 7vw, 36px); }
@@ -1388,7 +1404,7 @@
   .closer-cta-secondary {
     font-family: 'Geist', sans-serif; font-size: 10.5px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase;
-    color: rgba(244, 241, 234, 0.55); text-decoration: none;
+    color: rgba(235, 226, 207, 0.55); text-decoration: none;
     transition: color 0.3s, letter-spacing 0.4s;
   }
   .closer-cta-secondary:hover {
@@ -1415,9 +1431,11 @@
     text-align: center;
   }
   footer .l {
+    font-family: var(--serif);
     color: var(--bone);
-    font-weight: 300;
-    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 24px;
     letter-spacing: -0.01em;
   }
   footer .footer-meta {
@@ -1436,7 +1454,7 @@
     position: fixed; bottom: 24px; left: 24px; z-index: 50;
     font-family: 'Geist', sans-serif; font-size: 9.5px;
     letter-spacing: 0.32em; text-transform: uppercase;
-    color: rgba(244, 241, 234, 0.35); font-weight: 500;
+    color: rgba(235, 226, 207, 0.35); font-weight: 500;
     pointer-events: none;
     writing-mode: vertical-rl; transform: rotate(180deg);
   }
@@ -1537,7 +1555,7 @@
       <div class="phone-bar">
         <div class="phone-avatar">R</div>
         <div class="phone-name">Reva</div>
-        <div class="phone-status">active now</div>
+        <div class="phone-status">available</div>
       </div>
       <div class="chat" id="chat"></div>
     </div>
