@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reva — A billionaire's team. By text.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0a0a0a;
+    --black-2:  #141414;
+    --black-3:  #1c1c1c;
+    --bone:     #f4f1ea;
+    --bone-d:   #d6d2c4;
+    --bone-dim: #8a8576;
+    --gold-1:   #e8cd95;
+    --gold-2:   #c9a559;
+    --gold-3:   #b08a3e;
+    --rule:     rgba(244, 241, 234, 0.05);
+    --rule-2:   rgba(244, 241, 234, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--bone);
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.005em;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+  }
+
+  /* Section connector — links sections visually */
+  .connector {
+    height: 80px;
+    position: relative;
+    background: inherit;
+  }
+  .connector::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, var(--rule-2) 50%, transparent 100%);
+  }
+
+  /* Stage label — hidden for a quieter, more luxurious feel */
+  .stage {
+    display: none;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 36px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    padding: 16px 36px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-menu {
+    display: flex; flex-direction: column; gap: 5px; width: 28px;
+    cursor: pointer; background: transparent; border: none; padding: 0;
+    transition: opacity 0.3s;
+  }
+  .nav-menu:hover { opacity: 0.6; }
+  .nav-menu span {
+    display: block; height: 1.5px; background: var(--bone);
+    border-radius: 2px; transition: all 0.3s;
+  }
+  .nav-menu span:nth-child(1) { width: 100%; }
+  .nav-menu span:nth-child(2) { width: 70%; }
+  .logo-mark {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    color: var(--bone);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    display: inline-block;
+    transition: color 0.3s, letter-spacing 0.3s;
+  }
+  .logo-mark:hover {
+    color: var(--bone);
+    letter-spacing: 0;
+    opacity: 0.7;
+  }
+  .nav-r-wrap { display: flex; justify-content: flex-end; }
+  .nav-r {
+    font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--bone); text-decoration: none; display: inline-flex;
+    align-items: center; gap: 8px; transition: opacity 0.3s;
+  }
+  .nav-r:hover { opacity: 0.6; }
+  .nav-r .arr { font-size: 11px; transform: translateY(-1px); }
+  @media (max-width: 720px) {
+    nav { padding: 22px 22px; }
+    nav.scrolled { padding: 14px 22px; }
+  }
+
+  /* ─── HERO (UNCHANGED) ─── */
+  .hero {
+    height: 100vh;
+    min-height: 720px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-photo {
+    position: absolute; inset: 0; z-index: 1;
+    background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wgARCAB4AKADASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAYBBQcEAwL/xAAaAQACAwEBAAAAAAAAAAAAAAAAAQIDBAUG/9oADAMBAAIQAxAAAAGw3Z6r9ARBxRb6AAAAAAAAAAAAAAAAAAAAAAAAAAA//8QAJBAAAQQBAwQDAQAAAAAAAAAAAgABAwQFERIxFCEiQRMyM1H/2gAIAQEAAQUC/CO0FYbF8M0/UC1Z4Cw3FPAUbn8oREAdQQ02nEnnnaUm5JtgxDtcDyD7a0jGWPL1nFvDVsjsH9F+VK+tA/1Ld1XqxTRRP6TaxSaP0XLE+NZ2yU0V/HQXRsTZ2N6UYf03YF/D//EABoRAAMBAQEBAAAAAAAAAAAAAAABERIQIVH/2gAIAQMBAT8B7H4qY+hRvR7gjrL09JGw0fOC9PZF1//EABoRAAICAwAAAAAAAAAAAAAAAAARARASIVH/2gAIAQIBAT8BrFhbDsJpIuRWf//EAC4QAAEDAgQEBQMFAAAAAAAAAAEAAhEDIRASMUEEEyJRMmFxgZEgQqEjUmKx0f/aAAgBAQAGPwI3jKGVdTzVL+kJgBlVT0yVbpheVOpLIYCRdMaDJWVtFwWDt8h8QU4wIVgGxKAqFwj4XEZRDc31Vmi68zdPzVTI3VW3DOJ8nIw0fhHbzWQiLT91nDhxHBZ20uHIcdRzVlDGNa3o+yvLmrhHAWNQ/wAtVwxwqj5CytMD8oYHmnDXFRk/Ipg/gz7L4WhIfSO//8QAJBABAAICAQQBBQEAAAAAAAAAAQARITFBEFFhcZGBobHB8NH/2gAIAQEAAT8h/aEoiuvrA0umpYEoxkW0wd3K9qFbnE1yGbkqHcS3X4Ys3jYbgMz9wDX9QKBT6gbxRmEHBs2GVR2g5uRtl04g0r5cTcrBvUq4L7gYhFBJa6kt9P2hGtxZsh/qsoTJW5Vj2YjCa1n+RwWB23Khwh3wsoeUWbX64nUWuvYqEAyhSJM85DiZ0IuYQGsRRYvOLITTuMxF95fLD25xLodCOxkz7ig1YCPeXKBPUKUBeBb8KNNVTYNj4/cnwXcd/FfbHPMNZRPmH5dPIhBGiq2Jh2C4CvRDDUSU+iDuT//aAAwDAQACAAMAAAAQA8Vq8zwgg88s888888888888888888//EABwRAQACAgMBAAAAAAAAAAAAAAEAESExQVFhcf/aAAgBAwEBPxAYR0Q/SnSvJV23BalWofx21H/LAHkcTzTC2GptB5G6Z//EABwRAQACAwEBAQAAAAAAAAAAAAEAESExQVFxgf/aAAgBAgEBPxBV4XYYrBDiuVQUd0+ynjOoFoOhepSLPyP3PuG1B9Fvk//EACQQAQEAAgEFAAEFAAAAAAAAAAERACExQVFhcYGhEPCRsdHx/9oACAEBAAE/EJ29BZTu9BrpkWeAS/4XBLA1eK4nXwOf6cAQqUKpx8z0Gn0HzQwPATFArRb53PWkQrYAEr4PWC2QXWAcNDpuCIvtaUqJKabwBQOhxv8AfFxUtPHGJG0ANHdfQ5wRkAtt5+/g4ImlA7L+Zj6hAxsrMCeGNXTVOBOfrLCKsi0yBs2Ne94cHNi7ALpOEx2TlfAlLeucBNSOugLeQ2ZG8AFsRAOwCedOAVEpgQUACSlh5Eu8aoDMSHO2vGCWRYSaApCdDZkAaEBpyHvkynEaXn41pwM5+8KLKw8x+lgvvA//2Q==');
+    background-size: cover;
+    background-position: center;
+    background-color: #0a0a0a;
+    will-change: transform;
+    filter: blur(0.5px);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    background:
+      radial-gradient(ellipse at center 60%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.7) 100%),
+      linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.45) 35%, rgba(10,10,10,0.75) 100%);
+  }
+  .hero-content {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 14vh 36px 0; text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Geist', sans-serif; font-weight: 400; color: var(--bone);
+    font-size: clamp(40px, 8vw, 144px); line-height: 1.05; letter-spacing: -0.04em;
+    max-width: 1400px; text-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+  }
+  .hero h1 .l1 {
+    display: block; opacity: 0;
+    animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+  }
+  .hero h1 .l2 {
+    display: block; opacity: 0;
+    animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 30px rgba(201, 165, 89, 0.25));
+    padding-bottom: 0.12em;
+  }
+  .hero-cta {
+    margin-top: 56px; font-family: 'Geist', sans-serif; font-size: 11.5px;
+    font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--black); background: var(--bone); padding: 22px 42px;
+    border-radius: 0; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 16px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity: 0; animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s both;
+    border: 1px solid var(--bone);
+  }
+  .hero-cta:hover { background: transparent; color: var(--bone); }
+  .hero-cta .arr { transition: transform 0.3s; font-size: 14px; }
+  .hero-cta:hover .arr { transform: translateX(4px); }
+  .hero-cta-stack {
+    display: flex; flex-direction: column; align-items: center; gap: 26px;
+  }
+  .hero-cta-secondary {
+    font-family: 'Geist', sans-serif; font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.55); text-decoration: none;
+    opacity: 0; animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.05s both;
+    transition: color 0.3s, letter-spacing 0.4s;
+  }
+  .hero-cta-secondary:hover {
+    color: var(--bone); letter-spacing: 0.32em;
+  }
+  /* Scroll cue at bottom of hero */
+  .scroll-cue {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    font-family: 'Geist', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.4);
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.4s both, bob 2.8s ease-in-out 2.6s infinite;
+    text-align: center;
+  }
+  .scroll-cue::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(180deg, rgba(244,241,234,0.5), transparent);
+    margin: 14px auto 0;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 6px); }
+  }
+  @media (max-width: 720px) {
+    .hero-content { padding: 14vh 22px 0; }
+    .scroll-cue { bottom: 28px; }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     1. PAIN — mirror their week
+     ═══════════════════════════════════════════════════ */
+  .pain {
+    padding: 240px 36px 220px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black);
+    position: relative;
+    text-align: center;
+  }
+  .pain-inner { max-width: 720px; margin: 0 auto; }
+  .pain-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    text-align: center;
+    position: relative;
+  }
+  .pain-list::before {
+    content: '"';
+    position: absolute;
+    top: -64px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Geist', sans-serif;
+    font-style: italic;
+    font-weight: 200;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--gold-2);
+    opacity: 0.35;
+  }
+  .pain-paragraph {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.55;
+    letter-spacing: -0.012em;
+    color: var(--bone-d);
+  }
+  .pain-paragraph strong {
+    color: var(--bone);
+    font-weight: 300;
+  }
+
+  .pain-divider {
+    width: 1px;
+    height: 80px;
+    margin: 88px auto 64px;
+    background: linear-gradient(180deg, transparent, var(--rule-2), transparent);
+  }
+
+  .pain-bridge {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(28px, 3.4vw, 52px);
+    line-height: 1.2;
+    letter-spacing: -0.028em;
+    color: var(--bone);
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .pain-bridge .em {
+    display: block;
+    margin-top: 16px;
+    font-style: italic;
+    font-weight: 300;
+    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    padding-bottom: 0.12em;
+  }
+
+  @media (max-width: 720px) {
+    .pain { padding: 150px 22px 130px; }
+    .pain-list::before { top: -48px; font-size: 72px; }
+    .pain-divider { height: 60px; margin: 64px auto 48px; }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     2. PROMISE — the answer
+     ═══════════════════════════════════════════════════ */
+  .promise {
+    padding: 180px 36px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black-2);
+    text-align: center;
+    position: relative;
+  }
+  .promise-inner { max-width: 1100px; margin: 0 auto; }
+  .promise-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(36px, 5vw, 76px);
+    line-height: 1.1;
+    letter-spacing: -0.038em;
+    color: var(--bone);
+  }
+  .promise-h .em {
+    display: block;
+    margin-top: 14px;
+    font-style: italic;
+    font-weight: 300;
+    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    padding-bottom: 0.12em;
+  }
+  .promise-sub {
+    margin-top: 56px;
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--bone-dim);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .promise-sub::before {
+    content: '↓';
+    display: block;
+    margin-bottom: 18px;
+    color: var(--gold-2);
+    font-size: 14px;
+    opacity: 0.6;
+  }
+  @media (max-width: 720px) { .promise { padding: 110px 22px; } }
+
+  /* ═══════════════════════════════════════════════════
+     3. DEMO — show me
+     ═══════════════════════════════════════════════════ */
+  .demo {
+    padding: 200px 36px 180px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black);
+    position: relative;
+  }
+  .demo-inner { max-width: 1280px; margin: 0 auto; }
+  .demo-head {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .demo-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+    margin-bottom: 24px;
+  }
+  .demo-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .demo-sub {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.2vw, 17px);
+    color: var(--bone-dim);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .phone-frame {
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    background: #000; border: 8px solid #1a1a1a;
+    border-radius: 44px; padding: 0; position: relative;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 60px 120px rgba(0, 0, 0, 0.6),
+      0 30px 60px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+  }
+  .phone-status-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 28px 8px; font-family: 'Geist', sans-serif;
+    font-size: 14px; font-weight: 500; color: var(--bone);
+  }
+  .phone-status-bar .icons {
+    display: flex; gap: 5px; align-items: center; color: var(--bone);
+  }
+  .phone-status-bar .icons svg { width: 14px; height: 11px; }
+  .phone-notch {
+    position: absolute; top: 8px; left: 50%;
+    transform: translateX(-50%);
+    width: 92px; height: 28px; background: #000;
+    border-radius: 16px; z-index: 5;
+  }
+  .phone-bar {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 8px 16px 14px;
+    border-bottom: 0.5px solid rgba(244, 241, 234, 0.08);
+    gap: 6px; background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+  }
+  .phone-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--gold-2) 0%, #5a3f15 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Geist', sans-serif; font-size: 16px; font-weight: 500;
+    color: #fff; letter-spacing: -0.02em; margin-bottom: 4px;
+    border: 0.5px solid rgba(244, 241, 234, 0.1);
+  }
+  .phone-name {
+    font-family: 'Geist', sans-serif; font-weight: 500;
+    font-size: 13px; color: var(--bone); letter-spacing: -0.01em;
+  }
+  .phone-status {
+    font-size: 10px; color: var(--bone-dim); font-weight: 400;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .phone-status::before {
+    content: ''; width: 5px; height: 5px;
+    border-radius: 50%; background: #4ade80;
+    animation: pulse 2s infinite;
+  }
+  .chat {
+    min-height: 380px; display: flex; flex-direction: column;
+    gap: 4px; padding: 16px 12px 24px; background: #000;
+  }
+  .bubble {
+    max-width: 76%; padding: 9px 14px; border-radius: 18px;
+    font-size: 14.5px; line-height: 1.32;
+    opacity: 0; transform: translateY(6px);
+    animation: bubbleIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    font-weight: 400; letter-spacing: -0.005em;
+  }
+  .bubble.out {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #2c7eff 0%, #1f5ed9 100%);
+    color: #fff; border-bottom-right-radius: 4px; margin-top: 2px;
+  }
+  .bubble.in {
+    align-self: flex-start; background: #1f1f1f;
+    color: var(--bone); border-bottom-left-radius: 4px; margin-top: 2px;
+  }
+  .bubble.in em {
+    font-style: normal; color: var(--bone-dim); font-size: 10px;
+    display: block; margin-top: 6px; font-weight: 400; opacity: 0.7;
+  }
+  .typing {
+    align-self: flex-start; display: flex; gap: 3px;
+    padding: 11px 14px; background: #1f1f1f;
+    border-radius: 18px; border-bottom-left-radius: 4px;
+    opacity: 0;
+    animation: bubbleIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  .typing.from-member {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #2c7eff 0%, #1f5ed9 100%);
+    border-bottom-right-radius: 4px; border-bottom-left-radius: 18px;
+  }
+  .typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(244, 241, 234, 0.7);
+    animation: dot 1.3s infinite ease-in-out;
+  }
+  .typing.from-member span { background: rgba(255, 255, 255, 0.7); }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bubbleIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes dot {
+    0%, 60%, 100% { transform: scale(0.7); opacity: 0.4; }
+    30% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+    50%      { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+  }
+  .demo-dots {
+    display: flex; justify-content: center; gap: 8px; margin-top: 32px;
+  }
+  .demo-dots .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--rule-2); transition: all 0.4s ease;
+  }
+  .demo-dots .dot.active {
+    background: var(--bone); width: 24px; border-radius: 4px;
+  }
+
+  /* Demo footer — bridge to next section */
+  .demo-footer {
+    margin-top: 100px;
+    text-align: center;
+    padding-top: 64px;
+    border-top: 1px solid var(--rule);
+  }
+  .demo-footer-line {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: var(--bone-d);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .demo-footer-line strong {
+    color: var(--bone);
+    font-weight: 400;
+  }
+
+  @media (max-width: 720px) { .demo { padding: 130px 22px 110px; } }
+
+  /* ═══════════════════════════════════════════════════
+     4. VS — the difference (after demo, when the question naturally arises)
+     ═══════════════════════════════════════════════════ */
+  .vs {
+    padding: 200px 36px 180px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black-2);
+    position: relative;
+  }
+  .vs-inner { max-width: 1180px; margin: 0 auto; }
+  .vs-head {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .vs-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 400;
+    font-size: clamp(34px, 4.4vw, 60px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+  }
+  .vs-h .it { font-style: italic; font-weight: 500; }
+
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    align-items: stretch;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .vs-divider { background: var(--rule); }
+  .vs-col {
+    padding: 64px 56px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+  }
+  .vs-col.us {
+    background: radial-gradient(ellipse at top, rgba(201, 165, 89, 0.04) 0%, transparent 70%);
+  }
+  .vs-label {
+    font-family: 'Geist', sans-serif; font-size: 10.5px;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    font-weight: 500;
+  }
+  .vs-col.them .vs-label { color: var(--bone-dim); }
+  .vs-col.us .vs-label { color: var(--gold-2); }
+  .vs-headline {
+    font-family: 'Geist', sans-serif;
+    font-weight: 400;
+    font-size: clamp(30px, 3.4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .vs-col.them .vs-headline {
+    color: var(--bone-dim);
+    text-decoration: line-through;
+    text-decoration-color: rgba(138, 133, 118, 0.45);
+    text-decoration-thickness: 1.5px;
+  }
+  .vs-col.us .vs-headline { color: var(--bone); }
+  .vs-col.us .vs-headline .it { font-style: italic; font-weight: 500; }
+
+  .vs-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .vs-bullet {
+    font-size: 15px;
+    line-height: 1.45;
+    display: flex;
+    gap: 12px;
+  }
+  .vs-col.them .vs-bullet { color: var(--bone-dim); }
+  .vs-col.us .vs-bullet { color: var(--bone-d); }
+  .vs-bullet::before {
+    content: '—';
+    flex-shrink: 0;
+    font-weight: 400;
+  }
+  .vs-col.them .vs-bullet::before { color: rgba(138, 133, 118, 0.5); }
+  .vs-col.us .vs-bullet::before { color: var(--gold-2); }
+
+  .vs-category {
+    font-family: 'Geist', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 14px;
+    margin-bottom: 2px;
+  }
+  .vs-category:first-child { margin-top: 0; }
+  .vs-col.them .vs-category { color: rgba(138, 133, 118, 0.55); }
+  .vs-col.us .vs-category { color: var(--gold-2); opacity: 0.85; }
+
+  @media (max-width: 900px) {
+    .vs-grid { grid-template-columns: 1fr; }
+    .vs-divider { width: 100%; height: 1px; }
+    .vs-col { padding: 48px 32px; }
+  }
+  @media (max-width: 720px) {
+    .vs { padding: 130px 22px 110px; }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     4. MEMBERSHIP — what's actually included
+     ═══════════════════════════════════════════════════ */
+  .manifest {
+    padding: 200px 36px 180px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black);
+    position: relative;
+  }
+  .manifest-inner { max-width: 1280px; margin: 0 auto; }
+  .manifest-head {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .manifest-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+    margin-bottom: 28px;
+  }
+  .manifest-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .manifest-sub {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--bone-dim);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .manifest-list {
+    border-top: 1px solid var(--rule);
+  }
+  .manifest-row {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 100px;
+    padding: 80px 8px;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    transition: background 0.5s;
+  }
+  .manifest-row:hover {
+    background: rgba(244, 241, 234, 0.01);
+  }
+
+  .manifest-domain {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .manifest-num {
+    font-family: 'Geist', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+    font-weight: 400;
+  }
+  .manifest-name {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(28px, 2.6vw, 38px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+  }
+  .manifest-name .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .manifest-tag {
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--bone-dim);
+    font-weight: 300;
+    margin-top: 8px;
+    max-width: 280px;
+  }
+
+  .manifest-services {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  .manifest-service {
+    display: block;
+    color: var(--bone-d);
+    font-weight: 300;
+    max-width: 720px;
+    padding-left: 0;
+    border-left: 1px solid var(--rule-2);
+    padding-left: 28px;
+  }
+  .manifest-service::before {
+    content: none;
+  }
+  .manifest-service strong {
+    color: var(--bone);
+    font-weight: 300;
+    display: block;
+    margin-bottom: 12px;
+    letter-spacing: -0.018em;
+    line-height: 1.3;
+    font-size: clamp(17px, 1.4vw, 20px);
+  }
+  .manifest-service span {
+    color: var(--bone-dim);
+    font-size: 14.5px;
+    font-weight: 300;
+    line-height: 1.65;
+    letter-spacing: 0;
+  }
+
+  .manifest-foot {
+    margin-top: 80px;
+    text-align: center;
+    padding-top: 56px;
+    border-top: 1px solid var(--rule);
+  }
+  .manifest-foot-line {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(18px, 1.6vw, 24px);
+    color: var(--bone-d);
+    letter-spacing: -0.015em;
+  }
+  .manifest-foot-line strong {
+    color: var(--bone);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  @media (max-width: 900px) {
+    .manifest-row {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 64px 4px;
+    }
+    .manifest-services { gap: 36px; }
+  }
+  @media (max-width: 720px) {
+    .manifest { padding: 110px 20px 90px; }
+    .manifest-head { margin-bottom: 64px; }
+    .manifest-row { padding: 56px 0; gap: 32px; }
+    .manifest-name { font-size: 26px; }
+    .manifest-service { padding-left: 20px; }
+    .manifest-service strong { font-size: 16px; line-height: 1.35; margin-bottom: 10px; }
+    .manifest-service span { font-size: 14px; }
+    .manifest-foot { margin-top: 56px; padding-top: 40px; }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     6. PROOF — does it work?
+     ═══════════════════════════════════════════════════ */
+  .proof {
+    padding: 200px 36px 180px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black-2);
+    position: relative;
+  }
+  .proof-inner { max-width: 1280px; margin: 0 auto; }
+  .proof-head {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .proof-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--bone);
+  }
+  .proof-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+  }
+  .proof-card {
+    background: var(--black);
+    padding: 80px 48px;
+    text-align: center;
+  }
+  .proof-num {
+    font-family: 'Geist', sans-serif; font-weight: 200;
+    font-size: clamp(72px, 9vw, 132px);
+    line-height: 1; letter-spacing: -0.05em;
+    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 60%, var(--gold-3) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    margin-bottom: 24px;
+  }
+  .proof-num .unit {
+    font-size: 0.28em; color: var(--bone-dim);
+    font-weight: 400; letter-spacing: 0.02em; margin-left: 4px;
+    -webkit-text-fill-color: var(--bone-dim);
+  }
+  .proof-label {
+    font-family: 'Geist', sans-serif; font-size: 10px;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--bone-dim); font-weight: 400;
+  }
+  @media (max-width: 900px) {
+    .proof-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .proof { padding: 130px 22px 110px; }
+    .proof-card { padding: 56px 32px; }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     7. FOUNDER — who's behind this
+     ═══════════════════════════════════════════════════ */
+  .founder {
+    padding: 200px 36px 180px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black);
+    position: relative;
+  }
+  .founder-inner { max-width: 880px; margin: 0 auto; }
+  .founder-eye {
+    font-family: 'Geist', sans-serif; font-size: 10px;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--bone-dim); font-weight: 400; margin-bottom: 64px;
+    text-align: left;
+  }
+  .founder p {
+    font-family: 'Geist', sans-serif;
+    font-size: clamp(19px, 1.5vw, 23px);
+    line-height: 1.6; color: var(--bone-d);
+    margin-bottom: 28px; font-weight: 200;
+    letter-spacing: -0.008em;
+  }
+  .founder p strong {
+    color: var(--bone); font-weight: 300;
+  }
+  .founder-sign {
+    margin-top: 64px; padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    font-size: 14px; color: var(--bone); font-weight: 300;
+    letter-spacing: 0;
+  }
+  .founder-sign .role {
+    color: var(--bone-dim); font-weight: 300; margin-left: 8px;
+  }
+  @media (max-width: 720px) { .founder { padding: 130px 22px 110px; } }
+
+  /* ═══════════════════════════════════════════════════
+     7. FAQ — answers to the questions still in your head
+     ═══════════════════════════════════════════════════ */
+  .faq {
+    padding: 200px 36px 180px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--black-2);
+    position: relative;
+  }
+  .faq-inner { max-width: 1100px; margin: 0 auto; }
+  .faq-head {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .faq-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.1; letter-spacing: -0.035em;
+    color: var(--bone);
+    margin-bottom: 24px;
+  }
+  .faq-h .it { font-style: italic; font-weight: 300; color: var(--gold-2); }
+  .faq-sub {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--bone-dim);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--rule);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.4s;
+  }
+  .faq-item:hover { background: rgba(244, 241, 234, 0.015); }
+  .faq-item.open { background: rgba(244, 241, 234, 0.02); }
+
+  .faq-q {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    gap: 32px;
+    padding: 36px 8px;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+  }
+  .faq-num {
+    font-family: 'Geist', sans-serif; font-size: 10px;
+    letter-spacing: 0.36em; text-transform: uppercase;
+    color: var(--bone-dim); font-weight: 400;
+  }
+  .faq-question {
+    font-family: 'Geist', sans-serif; font-weight: 300;
+    font-size: clamp(17px, 1.4vw, 21px);
+    color: var(--bone); letter-spacing: -0.018em;
+    line-height: 1.35;
+  }
+  .faq-toggle {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    justify-self: end;
+    color: var(--bone-dim);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
+  }
+  .faq-toggle::before, .faq-toggle::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .faq-toggle::before {
+    width: 14px; height: 1px;
+    transform: translate(-50%, -50%);
+  }
+  .faq-toggle::after {
+    width: 1px; height: 14px;
+    transform: translate(-50%, -50%);
+  }
+  .faq-item.open .faq-toggle {
+    color: var(--gold-2);
+    transform: rotate(180deg);
+  }
+  .faq-item.open .faq-toggle::after {
+    transform: translate(-50%, -50%) scaleY(0);
+  }
+
+  .faq-a {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .faq-item.open .faq-a {
+    max-height: 600px;
+  }
+  .faq-answer {
+    padding: 0 8px 40px;
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    gap: 32px;
+  }
+  .faq-answer-text {
+    grid-column: 2;
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.65;
+    color: var(--bone-d);
+    max-width: 720px;
+  }
+  .faq-answer-text strong {
+    color: var(--bone);
+    font-weight: 500;
+  }
+  .faq-answer-text p { margin-bottom: 14px; }
+  .faq-answer-text p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 720px) {
+    .faq { padding: 110px 20px 90px; }
+    .faq-head { margin-bottom: 56px; }
+    .faq-q {
+      grid-template-columns: 1fr 28px;
+      grid-template-rows: auto auto;
+      column-gap: 16px;
+      row-gap: 6px;
+      padding: 26px 4px;
+      align-items: start;
+    }
+    .faq-num {
+      grid-column: 1;
+      grid-row: 1;
+      font-size: 9.5px;
+      letter-spacing: 0.32em;
+      align-self: center;
+      padding-top: 4px;
+    }
+    .faq-question {
+      grid-column: 1;
+      grid-row: 2;
+      font-size: 16px;
+    }
+    .faq-toggle {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+    }
+    .faq-answer {
+      grid-template-columns: 1fr 28px;
+      gap: 16px;
+      padding: 0 4px 28px;
+    }
+    .faq-answer-text {
+      grid-column: 1;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     APPLY MODAL
+     ═══════════════════════════════════════════════════ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow-y: auto;
+  }
+  .modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal {
+    background: var(--black-2);
+    border: 1px solid var(--rule-2);
+    border-radius: 0;
+    width: 100%;
+    max-width: 640px;
+    padding: 56px 56px 48px;
+    position: relative;
+    transform: translateY(40px);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 60px 120px rgba(0, 0, 0, 0.6);
+    margin: auto;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-2) 0%, transparent 100%);
+    opacity: 0.6;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px; right: 24px;
+    background: transparent;
+    border: none;
+    color: var(--bone-dim);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+  }
+  .modal-close:hover { color: var(--bone); }
+  .modal-close::before, .modal-close::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 1px;
+    background: currentColor;
+  }
+  .modal-close::before { transform: rotate(45deg); }
+  .modal-close::after { transform: rotate(-45deg); }
+
+  .modal-eye {
+    font-family: 'Geist', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-2);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .modal-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+    margin-bottom: 16px;
+  }
+  .modal-h .it { font-style: italic; font-weight: 500; }
+  .modal-sub {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--bone-dim);
+    line-height: 1.55;
+    margin-bottom: 40px;
+  }
+
+  .form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-label {
+    font-family: 'Geist', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+    font-weight: 500;
+  }
+  .form-input, .form-select, .form-textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--rule-2);
+    padding: 10px 0;
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    color: var(--bone);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    transition: border-color 0.3s;
+    outline: none;
+    width: 100%;
+  }
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: var(--bone-dim);
+    opacity: 0.5;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold-2);
+  }
+  .form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a8576' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    padding-right: 24px;
+    cursor: pointer;
+  }
+  .form-select option {
+    background: var(--black-2);
+    color: var(--bone);
+  }
+  .form-textarea {
+    resize: none;
+    min-height: 80px;
+    padding-top: 10px;
+    line-height: 1.5;
+  }
+
+  .form-submit {
+    margin-top: 12px;
+    font-family: 'Geist', sans-serif;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--bone);
+    padding: 20px 36px;
+    border-radius: 0;
+    border: 1px solid var(--bone);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    width: 100%;
+  }
+  .form-submit:hover {
+    background: transparent;
+    color: var(--bone);
+  }
+  .form-submit .arr { transition: transform 0.3s; font-size: 14px; }
+  .form-submit:hover .arr { transform: translateX(4px); }
+  .form-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .form-fineprint {
+    margin-top: 18px;
+    font-family: 'Geist', sans-serif;
+    font-size: 11px;
+    color: var(--bone-dim);
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  /* Success state */
+  .modal-success {
+    text-align: center;
+    padding: 24px 0;
+    display: none;
+  }
+  .modal.success .form-grid,
+  .modal.success .modal-eye,
+  .modal.success .modal-h,
+  .modal.success .modal-sub { display: none; }
+  .modal.success .modal-success { display: block; }
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    color: var(--gold-2);
+    font-size: 24px;
+  }
+  .success-h {
+    font-family: 'Geist', sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--bone);
+    margin-bottom: 18px;
+  }
+  .success-h .it { font-style: italic; font-weight: 500; }
+  .success-text {
+    font-family: 'Geist', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--bone-d);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 720px) {
+    .modal-overlay { padding: 24px 16px; }
+    .modal { padding: 44px 24px 32px; }
+    .modal-close { top: 16px; right: 16px; }
+    .modal-h { font-size: 24px; line-height: 1.15; }
+    .form-row { grid-template-columns: 1fr; gap: 24px; }
+    .form-grid { gap: 22px; }
+  }
+
+  /* ═══════════════════════════════════════════════════
+     9. CLOSER
+     ═══════════════════════════════════════════════════ */
+  .closer {
+    padding: 220px 36px;
+    background: var(--black);
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    position: relative; overflow: hidden;
+  }
+  .closer::before {
+    content: ''; position: absolute; top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(201, 165, 89, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .closer-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 64px; position: relative; z-index: 1;
+  }
+  .closer-h {
+    font-family: 'Geist', sans-serif; font-weight: 300;
+    color: var(--bone);
+    font-size: clamp(28px, 4vw, 60px);
+    line-height: 1.18; letter-spacing: -0.03em;
+    max-width: 100%;
+  }
+  .closer-h .l1 {
+    display: block;
+    white-space: nowrap;
+  }
+  .closer-h .l2 {
+    display: block;
+    white-space: nowrap;
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 6px;
+    background: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 55%, var(--gold-3) 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    filter: drop-shadow(0 4px 30px rgba(201, 165, 89, 0.18));
+    padding-bottom: 0.12em;
+  }
+  @media (max-width: 600px) {
+    .closer-h { font-size: clamp(26px, 7vw, 36px); }
+    .closer-h .l1, .closer-h .l2 { white-space: normal; }
+  }
+  .closer-cta-stack {
+    display: flex; flex-direction: column; align-items: center; gap: 26px;
+  }
+  .closer-cta {
+    font-family: 'Geist', sans-serif; font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--black); background: var(--bone);
+    padding: 22px 42px; border-radius: 0; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 16px;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border: 1px solid var(--bone);
+  }
+  .closer-cta:hover { background: transparent; color: var(--bone); }
+  .closer-cta .arr { transition: transform 0.3s; font-size: 14px; }
+  .closer-cta:hover .arr { transform: translateX(4px); }
+  .closer-cta-secondary {
+    font-family: 'Geist', sans-serif; font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.55); text-decoration: none;
+    transition: color 0.3s, letter-spacing 0.4s;
+  }
+  .closer-cta-secondary:hover {
+    color: var(--bone); letter-spacing: 0.32em;
+  }
+  @media (max-width: 720px) {
+    .closer { padding: 140px 22px; }
+    .closer-h .l1, .closer-h .l2 { white-space: normal; }
+    .closer-h { font-size: clamp(26px, 7vw, 36px); line-height: 1.2; }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black);
+    padding: 64px 36px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    color: var(--bone-dim);
+    font-size: 11px;
+    border-top: 1px solid var(--rule);
+    font-weight: 300;
+    text-align: center;
+  }
+  footer .l {
+    color: var(--bone);
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  footer .footer-meta {
+    font-size: 11px;
+    color: var(--bone-dim);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+  footer a { color: var(--bone-dim); text-decoration: none; transition: color 0.3s; }
+  footer a:hover { color: var(--bone); }
+  @media (max-width: 720px) {
+    footer { padding: 48px 22px 40px; }
+  }
+
+  .serial-mark {
+    position: fixed; bottom: 24px; left: 24px; z-index: 50;
+    font-family: 'Geist', sans-serif; font-size: 9.5px;
+    letter-spacing: 0.32em; text-transform: uppercase;
+    color: rgba(244, 241, 234, 0.35); font-weight: 500;
+    pointer-events: none;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+  @media (max-width: 720px) { .serial-mark { display: none; } }
+
+  /* ─── ANIM ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(50px);
+    transition:
+      opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="serial-mark">Reva — Est. MMXXVI</div>
+
+<nav id="nav">
+  <button class="nav-menu" aria-label="Menu">
+    <span></span>
+    <span></span>
+  </button>
+  <a href="#" class="logo-mark">Reva</a>
+  <div class="nav-r-wrap">
+    <a href="#" class="nav-r" data-apply>Apply <span class="arr">↗</span></a>
+  </div>
+</nav>
+
+<!-- HERO (UNCHANGED) -->
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>
+      <span class="l1">Live like a billionaire,</span>
+      <span class="l2">without being one.</span>
+    </h1>
+    <div class="hero-cta-stack">
+      <a href="#" class="hero-cta" data-apply>Apply for membership <span class="arr">→</span></a>
+      <a href="#faq" class="hero-cta-secondary">See requirements</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 1. PAIN ─── -->
+<section class="pain">
+  <span class="stage"><span class="num">01</span>Why you're here</span>
+  <div class="pain-inner">
+    <div class="pain-list">
+      <p class="pain-paragraph reveal">You thought there'd be more time at this stage. There isn't. The week fills up with things only you can sign off on, and the things you actually wanted to do — see your kids more, take that trip, finally call a doctor about your back — keep slipping into next month. <strong>You're not lacking money. You're lacking the hours to use it.</strong></p>
+    </div>
+
+    <div class="pain-divider reveal"></div>
+
+    <p class="pain-bridge reveal">
+      You can afford anything you want.
+      <span class="em"><em>Except the time to want it.</em></span>
+    </p>
+  </div>
+</section>
+
+<!-- ─── 2. PROMISE ─── -->
+<section class="promise">
+  <span class="stage"><span class="num">02</span>The answer</span>
+  <div class="promise-inner">
+    <h2 class="promise-h reveal">
+      Billionaires don't run their own lives.
+      <span class="em">They have a team for that.</span>
+    </h2>
+  </div>
+</section>
+
+<!-- ─── 3. DEMO ─── -->
+<section class="demo">
+  <span class="stage"><span class="num">03</span>How it feels</span>
+  <div class="demo-inner">
+    <div class="demo-head">
+      <h2 class="demo-h reveal">Reva is that team. <span class="it">Now yours, by text.</span></h2>
+      <p class="demo-sub reveal">Unlike an assistant or an app, you don't have to call anyone or log into anything. Just text us — from a meeting, the car, lunch — whenever something comes up.</p>
+    </div>
+
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-status-bar">
+        <span>9:41</span>
+        <span class="icons">
+          <svg viewBox="0 0 17 11" fill="currentColor"><path d="M0.5 7.5h2v3h-2zM4 5.5h2v5h-2zM7.5 3h2v7.5h-2zM11 0.5h2v10h-2zM14.5 -1.5h2v12h-2z"/></svg>
+          <svg viewBox="0 0 16 11" fill="currentColor"><path d="M8 1c-2.4 0-4.6 0.9-6.3 2.4-0.3 0.3-0.3 0.7 0 1l0.7 0.7c0.3 0.3 0.7 0.3 1 0 1.3-1.1 3-1.8 4.6-1.8s3.3 0.7 4.6 1.8c0.3 0.3 0.7 0.3 1 0l0.7-0.7c0.3-0.3 0.3-0.7 0-1-1.7-1.5-3.9-2.4-6.3-2.4z"/></svg>
+          <svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="22" height="11" rx="2.5"/><rect x="2" y="2" width="19" height="8" rx="1" fill="currentColor"/><rect x="23.5" y="4" width="1.5" height="4" rx="0.5" fill="currentColor"/></svg>
+        </span>
+      </div>
+      <div class="phone-bar">
+        <div class="phone-avatar">R</div>
+        <div class="phone-name">Reva</div>
+        <div class="phone-status">active now</div>
+      </div>
+      <div class="chat" id="chat"></div>
+    </div>
+
+    <div class="demo-dots" id="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── 4. MEMBERSHIP ─── -->
+<section class="manifest">
+  <span class="stage"><span class="num">04</span>The membership</span>
+  <div class="manifest-inner">
+    <div class="manifest-head">
+      <h2 class="manifest-h reveal">Inside the <span class="it">membership.</span></h2>
+      <p class="manifest-sub reveal">Five departments running in the background of your life. Here's exactly what they do.</p>
+    </div>
+
+    <div class="manifest-list">
+
+      <!-- HEALTH -->
+      <div class="manifest-row reveal">
+        <div class="manifest-domain">
+          <div class="manifest-num">No. 01</div>
+          <h3 class="manifest-name">Your <span class="it">health team</span></h3>
+          <p class="manifest-tag">A small medical office working quietly on behalf of you and your family.</p>
+        </div>
+        <div class="manifest-services">
+          <div class="manifest-service">
+            <div>
+              <strong>You'll see the right specialist this week, not in six months.</strong>
+              <span>The cardiologist, dermatologist, oncologist, or whoever you actually need — booked through our network of physicians who keep slots open for our members.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>A doctor on the phone with you tonight, not Monday morning.</strong>
+              <span>When something unclear is happening at 11 PM — your kid's fever, a strange chest pain, a rash you don't recognize — we get a real physician on the line within the hour.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>Your medical history, organized in one place and ready to send anywhere.</strong>
+              <span>Every test, scan, and prescription from every doctor you've ever seen — securely stored and sent to any physician in five minutes when you need it.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MONEY -->
+      <div class="manifest-row reveal">
+        <div class="manifest-domain">
+          <div class="manifest-num">No. 02</div>
+          <h3 class="manifest-name">Your <span class="it">financial office</span></h3>
+          <p class="manifest-tag">The structure wealthy families have quietly used for decades — set up properly, kept current, and run on your behalf.</p>
+        </div>
+        <div class="manifest-services">
+          <div class="manifest-service">
+            <div>
+              <strong>A senior CPA on retainer who actually plans your year, not just files it.</strong>
+              <span>Quarterly reviews, year-end strategy, structuring decisions made before they cost you — the kind of relationship most people don't realize is available until they have it.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>An estate and trust attorney working in the background of your life.</strong>
+              <span>Wills, trusts, succession plans — drafted, reviewed, and updated as your situation changes. The documents are in place long before anyone needs them.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>Every IRS letter answered without you opening the envelope.</strong>
+              <span>Audits, balance-due notices, penalty letters — they go directly to your CPA, get handled, and you hear about it only when there's a real decision to make.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOME -->
+      <div class="manifest-row reveal">
+        <div class="manifest-domain">
+          <div class="manifest-num">No. 03</div>
+          <h3 class="manifest-name">Your <span class="it">household</span></h3>
+          <p class="manifest-tag">Every property you own, running the way you'd run it if you had time to run it.</p>
+        </div>
+        <div class="manifest-services">
+          <div class="manifest-service">
+            <div>
+              <strong>The plumber, the electrician, the HVAC guy — at your door today.</strong>
+              <span>We've vetted the contractors in every city you live in. When something breaks, we make the call, schedule the visit, and meet them at the house if you need us to.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>The cleaners, organizers, and handymen you'd trust with your keys.</strong>
+              <span>Background-checked, references verified, scheduled on a recurring cadence that fits your week. We pay them, manage them, and replace anyone who doesn't meet the bar.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>The to-do list you've been ignoring since March, finally cleared.</strong>
+              <span>The warranty claim, the broken sprinkler, the missing window screen, the fence the neighbors keep mentioning — we work through the backlog one quiet line at a time.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRAVEL -->
+      <div class="manifest-row reveal">
+        <div class="manifest-domain">
+          <div class="manifest-num">No. 04</div>
+          <h3 class="manifest-name">Your <span class="it">travel desk</span></h3>
+          <p class="manifest-tag">A team that books every leg of every trip — and quietly fixes the ones that fall apart while you sleep.</p>
+        </div>
+        <div class="manifest-services">
+          <div class="manifest-service">
+            <div>
+              <strong>Every flight, hotel, and car booked from a single text.</strong>
+              <span>Tell us where, when, and who's coming — we handle the routing, the seats, the room, the airport pickup. You walk through the terminal and everything's already arranged.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>Cancelled flights and storms rerouted while you're still asleep.</strong>
+              <span>We monitor your itinerary. When JFK closes or the connection vanishes, we move you to the next viable option, get a new car to the right curb, and text you before your alarm goes off.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>Trusted partners on the ground in over forty cities.</strong>
+              <span>The driver, the doctor, the dinner reservation, the local fixer who knows the city — already arranged in the cities you visit, ready before your plane lands.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIFE -->
+      <div class="manifest-row reveal">
+        <div class="manifest-domain">
+          <div class="manifest-num">No. 05</div>
+          <h3 class="manifest-name">Your <span class="it">life desk</span></h3>
+          <p class="manifest-tag">The hundred small things that fall through the cracks of a successful week — caught, sourced, and signed in your handwriting.</p>
+        </div>
+        <div class="manifest-services">
+          <div class="manifest-service">
+            <div>
+              <strong>You'll never miss another anniversary, birthday, or milestone.</strong>
+              <span>We track the dates that matter for you, your spouse, your kids, your parents, your closest friends — and on the morning of, the dinner is booked, the gift is at the door, and the card is on your desk to sign.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>The right gift, every time, without you walking into a store.</strong>
+              <span>From a first-edition book your father-in-law has wanted for years to a piece commissioned from a designer who doesn't take walk-ins — we source it, wrap it, write the note, and have it delivered the way you'd want it delivered.</span>
+            </div>
+          </div>
+          <div class="manifest-service">
+            <div>
+              <strong>And anything else you can think of — usually yes, occasionally no.</strong>
+              <span>Sushi flown in from Tokyo for a dinner party. A helicopter at sunrise for an anniversary. The interesting part isn't whether we can do it — it's how we get it done.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="manifest-foot reveal">
+      <p class="manifest-foot-line">Five domains. One thread. <strong>Zero of it on your plate.</strong></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── 6. PROOF ─── -->
+<section class="proof">
+  <span class="stage"><span class="num">05</span>Does it work</span>
+  <div class="proof-inner">
+    <div class="proof-head">
+      <h2 class="proof-h reveal">The average member gets back <span class="it">eleven hours a week.</span></h2>
+    </div>
+
+    <div class="proof-grid reveal">
+      <div class="proof-card">
+        <div class="proof-num">11<span class="unit">hrs</span></div>
+        <div class="proof-label">Back per week</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">94<span class="unit">%</span></div>
+        <div class="proof-label">Same-day done</div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-num">0<span class="unit">calls</span></div>
+        <div class="proof-label">From you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 7. FOUNDER ─── -->
+<section class="founder">
+  <span class="stage"><span class="num">06</span>Why it exists</span>
+  <div class="founder-inner">
+    <div class="founder-eye">A note from the Reva team</div>
+
+    <p class="reveal">A few years ago we noticed something about the people we knew who'd actually made it.</p>
+    <p class="reveal"><strong>The wealthier they got, the less of their own life they ran.</strong></p>
+    <p class="reveal">They didn't sit on hold. They didn't chase plumbers. They didn't forget anniversaries. They had a team.</p>
+    <p class="reveal"><strong>Reva is that team. Without the billion.</strong></p>
+
+    <div class="founder-sign">— The Reva team</div>
+  </div>
+</section>
+
+<!-- ─── 7. FAQ ─── -->
+<section class="faq" id="faq">
+  <span class="stage"><span class="num">07</span>Questions</span>
+  <div class="faq-inner">
+    <div class="faq-head">
+      <h2 class="faq-h reveal">Things people ask <span class="it">before they join.</span></h2>
+      <p class="faq-sub reveal">Five answers. The rest, on the call.</p>
+    </div>
+
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-num">No. 01</span>
+          <span class="faq-question">How is this different from a concierge?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-answer">
+            <div class="faq-answer-text">
+              <p>A concierge does what you ask. <strong>Reva does what you forgot to.</strong></p>
+              <p>Concierges are reactive — restaurant reservations, theater tickets, hotel upgrades. Reva runs five departments of your life: a health team, a financial office, a household, a travel desk, and a life desk. We track what's coming, anticipate what'll go wrong, and clear the list since March without you opening the list.</p>
+              <p>The simplest test: a concierge handles a night out. Reva handles a year.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-num">No. 02</span>
+          <span class="faq-question">Who qualifies for membership?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-answer">
+            <div class="faq-answer-text">
+              <p>Three things, in order:</p>
+              <p><strong>1. Means.</strong> Liquid net worth above $5M, or income above $1M annually. We verify quietly.</p>
+              <p><strong>2. Fit.</strong> Referred by a current member, or interviewed by the founder. We keep the membership tight on purpose — a small team can only run a small number of lives well.</p>
+              <p><strong>3. Posture.</strong> Comfortable with text as the only interface. Willing to be specific about what you want back. The members who get the most from Reva are the ones willing to hand things over completely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-num">No. 03</span>
+          <span class="faq-question">What does it cost?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-answer">
+            <div class="faq-answer-text">
+              <p><strong>$5,000 a month.</strong> Billed quarterly.</p>
+              <p>That covers everything in the membership — the doctors, the CPA, the estate attorney, the household help, the travel desk, all of it. Text us when you need something. We handle it.</p>
+              <p>No per-task fees. No add-ons. If you ever need a heavier tier — say, during a renovation or a big move — we'll talk about it then.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-num">No. 04</span>
+          <span class="faq-question">Is there really no app? No portal?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-answer">
+            <div class="faq-answer-text">
+              <p>Correct. One thread in your existing messages app. That's the entire interface.</p>
+              <p>This is the design choice that makes Reva work. Apps demand attention — open them, log in, navigate, type. A text thread sits in the same app you already use to text your spouse. You thumb a sentence under the table in a meeting, between bites at lunch, walking the dog. We move; you stay where you are.</p>
+              <p>If we ever build an app, we'll have lost the plot.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-num">No. 05</span>
+          <span class="faq-question">What if I need something at 3 AM?</span>
+          <span class="faq-toggle" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-answer">
+            <div class="faq-answer-text">
+              <p>Text us. Someone is on the thread.</p>
+              <p>Reva runs a follow-the-sun team across three regions. Your message gets a human response in minutes, not hours, regardless of the clock. Medical emergencies, travel disruptions, missed flights, sick kids abroad — these are exactly the moments the membership is built for.</p>
+              <p>The 11 PM call is in the manifest for a reason.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── 9. CLOSER ─── -->
+<section class="closer" id="apply">
+  <div class="closer-inner">
+    <h2 class="closer-h">
+      <span class="l1">Billionaires don't run their own lives.</span>
+      <span class="l2">Now you don't have to either.</span>
+    </h2>
+    <div class="closer-cta-stack">
+      <a href="#" class="closer-cta" data-apply>Apply for membership <span class="arr">→</span></a>
+      <a href="#faq" class="closer-cta-secondary">See requirements</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="l">Reva</span>
+  <span class="footer-meta">© Reva &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Press</a> &nbsp;·&nbsp; <a href="#">Contact</a></span>
+</footer>
+
+<!-- ─── APPLY MODAL ─── -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal-inner">
+    <button class="modal-close" id="modal-close" aria-label="Close"></button>
+
+    <div class="modal-eye">Membership · Apply</div>
+    <h2 class="modal-h" id="modal-title">Tell us a little. <span class="it">We'll be in touch within 48 hours.</span></h2>
+    <p class="modal-sub">Applications are reviewed by the founder. If we're a fit, you'll get a quiet email setting up an intro call. If not, you'll hear that too.</p>
+
+    <form class="form-grid" id="apply-form" novalidate>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="f-first">First name</label>
+          <input class="form-input" type="text" id="f-first" name="first" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-last">Last name</label>
+          <input class="form-input" type="text" id="f-last" name="last" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="f-email">Email</label>
+          <input class="form-input" type="email" id="f-email" name="email" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-phone">Phone</label>
+          <input class="form-input" type="tel" id="f-phone" name="phone" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="f-tier">Means tier</label>
+          <select class="form-select" id="f-tier" name="tier" required>
+            <option value="" disabled selected>Select one</option>
+            <option value="1m-3m">$1M–$3M income</option>
+            <option value="5m-10m">$5M–$10M liquid</option>
+            <option value="10m-25m">$10M–$25M liquid</option>
+            <option value="25m+">$25M+ liquid</option>
+            <option value="prefer-not">Prefer to discuss</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-referral">Referred by</label>
+          <input class="form-input" type="text" id="f-referral" name="referral" placeholder="Member name, or 'none'">
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="f-handover">If we started Monday, what would you hand to us first?</label>
+        <textarea class="form-textarea" id="f-handover" name="handover" rows="3" placeholder="The list since March. The IRS letter. The dad in Raleigh. Specific is better." required></textarea>
+      </div>
+
+      <button type="submit" class="form-submit" id="apply-submit">
+        Submit application <span class="arr">→</span>
+      </button>
+
+      <p class="form-fineprint">All applications are confidential. We never share, sell, or publish member data — that's table stakes.</p>
+    </form>
+
+    <div class="modal-success">
+      <div class="success-icon">✓</div>
+      <h3 class="success-h">Received. <span class="it">Thank you.</span></h3>
+      <p class="success-text">A member of the team will be in touch within 48 hours from a real human address. Until then, your inbox stays quiet.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Chat — short, punchy, crisis-first
+  const conversations = [
+    {
+      direction: "member",
+      first: "my dad just had a heart attack. raleigh.",
+      reply: "Dr. Patel at Duke. Tomorrow, 10 AM. Records sent.",
+      time: "4 min"
+    },
+    {
+      direction: "member",
+      first: "stuck in tokyo. need to be in NY tomorrow.",
+      reply: "JAL 6 to LAX. Private to Teterboro. Driver waiting.",
+      time: "11 min"
+    },
+    {
+      direction: "member",
+      first: "forgot our anniversary is tomorrow. save me.",
+      reply: "Chef David, your place, 7:30. Flowers at 4. Card to sign.",
+      time: "8 min"
+    },
+    {
+      direction: "reva",
+      first: "Storm at JFK. Your 7 AM will cancel.\nMoved you to Delta 6:30. Same seat. Confirm?",
+      reply: "Yes",
+      followUp: "Done. Driver at 4:45.",
+      time: "11:47 PM"
+    },
+    {
+      direction: "member",
+      first: "dishwasher leaking. dinner saturday.",
+      reply: "Plumber there in 90 min. Fixed today or replaced Friday.",
+      time: "6 min"
+    }
+  ];
+
+  let convIndex = 0;
+  const chat = document.getElementById('chat');
+  const dots = document.querySelectorAll('#dots .dot');
+
+  function buildBubbles(conv) {
+    if (conv.direction === "member") {
+      chat.innerHTML = `
+        <div class="bubble out">${conv.first.replace(/\n/g, '<br>')}</div>
+        <div class="typing" id="typing"><span></span><span></span><span></span></div>
+        <div class="bubble in" id="reply" style="display:none;">${conv.reply}<em>${conv.time}</em></div>
+      `;
+    } else {
+      chat.innerHTML = `
+        <div class="bubble in">${conv.first.replace(/\n/g, '<br>')}<em>${conv.time}</em></div>
+        <div class="typing from-member" id="typing" style="display:none;"><span></span><span></span><span></span></div>
+        <div class="bubble out" id="reply" style="display:none;">${conv.reply}</div>
+        <div class="typing" id="typing2" style="display:none;"><span></span><span></span><span></span></div>
+        <div class="bubble in" id="followup" style="display:none;">${conv.followUp}</div>
+      `;
+    }
+  }
+
+  function runChat() {
+    const conv = conversations[convIndex];
+    buildBubbles(conv);
+    dots.forEach((d, i) => d.classList.toggle('active', i === convIndex));
+
+    const typing = document.getElementById('typing');
+    const reply = document.getElementById('reply');
+
+    if (conv.direction === "member") {
+      setTimeout(() => { typing.style.display = 'flex'; }, 800);
+      setTimeout(() => { typing.style.display = 'none'; reply.style.display = 'block'; }, 2200);
+    } else {
+      const typing2 = document.getElementById('typing2');
+      const followup = document.getElementById('followup');
+      setTimeout(() => { typing.style.display = 'flex'; }, 1200);
+      setTimeout(() => { typing.style.display = 'none'; reply.style.display = 'block'; }, 2400);
+      setTimeout(() => { typing2.style.display = 'flex'; }, 2800);
+      setTimeout(() => { typing2.style.display = 'none'; followup.style.display = 'block'; }, 4000);
+    }
+  }
+
+  function nextChat() { convIndex = (convIndex + 1) % conversations.length; runChat(); }
+
+  let chatVisible = false; let chatTimer = null;
+  const chatObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !chatVisible) {
+        chatVisible = true; runChat(); chatTimer = setInterval(nextChat, 6500);
+      } else if (!entry.isIntersecting && chatVisible) {
+        chatVisible = false; clearInterval(chatTimer);
+      }
+    });
+  }, { threshold: 0.4 });
+  chatObserver.observe(chat);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const heroPhoto = document.querySelector('.hero-photo');
+  const heroSection = document.querySelector('.hero');
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const heroHeight = heroSection.offsetHeight;
+        if (y < heroHeight && heroPhoto) {
+          heroPhoto.style.transform = `translateY(${y * 0.4}px) scale(${1 + y / heroHeight * 0.05})`;
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ─── FAQ accordion ───
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      // Open this one if it wasn't already open
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ─── Apply modal ───
+  const modal = document.getElementById('modal');
+  const modalInner = document.getElementById('modal-inner');
+  const modalClose = document.getElementById('modal-close');
+  const applyForm = document.getElementById('apply-form');
+  const applyTriggers = document.querySelectorAll('[data-apply]');
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const firstInput = applyForm.querySelector('input');
+      if (firstInput && !modalInner.classList.contains('success')) firstInput.focus();
+    }, 400);
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset success state after fade
+    setTimeout(() => {
+      modalInner.classList.remove('success');
+      applyForm.reset();
+    }, 500);
+  }
+
+  applyTriggers.forEach(t => {
+    t.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  // Form submission — replace with your real backend later
+  applyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const submitBtn = document.getElementById('apply-submit');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
+
+    // Collect data — in production, POST this to your API
+    const data = Object.fromEntries(new FormData(applyForm).entries());
+    // For now: log + simulate network + show success
+    console.log('Reva application submitted:', data);
+
+    setTimeout(() => {
+      modalInner.classList.add('success');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit application <span class="arr">→</span>';
+    }, 800);
+  });
+</script>
+
+</body>
+</html>
