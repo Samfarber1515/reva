@@ -1778,9 +1778,9 @@
         <div class="faq-a">
           <div class="faq-answer">
             <div class="faq-answer-text">
-              <p>A concierge does what you ask. <strong>Reva does what you forgot to.</strong></p>
-              <p>Concierges are reactive — restaurant reservations, theater tickets, hotel upgrades. Reva runs five departments of your life: a health team, a financial office, a household, a travel desk, and a life desk. We track what's coming, anticipate what'll go wrong, and clear the list since March without you opening the list.</p>
-              <p>The simplest test: a concierge handles a night out. Reva handles a year.</p>
+              <p>A concierge waits for you to ask. <strong>Reva doesn't.</strong></p>
+              <p>We're watching what's coming for you — the trip you'd love to take, the doctor you've been meaning to find, the storm that's about to cancel your flight — and we get ahead of it. Most weeks, you'll get a text from us before you would have thought to send one.</p>
+              <p>That's the whole difference. <strong>Reva moves before you do.</strong></p>
             </div>
           </div>
         </div>
@@ -1955,37 +1955,38 @@
     else nav.classList.remove('scrolled');
   });
 
-  // Chat — short, punchy, crisis-first
+  // Chat — first one is proactive (Reva nudges), rest are how people actually text
   const conversations = [
     {
+      direction: "reva",
+      first: "want to take the family to hawaii this weekend? i can have it ready in an hour",
+      reply: "do it",
+      followUp: "done. four seasons maui, oceanfront. private out of teterboro 8am friday, back monday. itinerary in your inbox by 3",
+      time: "14 min"
+    },
+    {
       direction: "member",
-      first: "my dad just had a heart attack. raleigh.",
-      reply: "Dr. Patel at Duke. Tomorrow, 10 AM. Records sent.",
+      first: "my dad just had a heart attack. raleigh",
+      reply: "on it. dr. patel at duke, 10am tomorrow. records being sent now",
       time: "4 min"
     },
     {
       direction: "member",
-      first: "stuck in tokyo. need to be in NY tomorrow.",
-      reply: "JAL 6 to LAX. Private to Teterboro. Driver waiting.",
+      first: "stuck in tokyo. need to be in ny tomorrow",
+      reply: "jal 6 to lax, private to teterboro. driver waiting",
       time: "11 min"
     },
     {
-      direction: "member",
-      first: "forgot our anniversary is tomorrow. save me.",
-      reply: "Chef David, your place, 7:30. Flowers at 4. Card to sign.",
-      time: "8 min"
-    },
-    {
       direction: "reva",
-      first: "Storm at JFK. Your 7 AM will cancel.\nMoved you to Delta 6:30. Same seat. Confirm?",
-      reply: "Yes",
-      followUp: "Done. Driver at 4:45.",
+      first: "storm hitting jfk tonight. moved you to the 6:30 out of lga, same seat. ok?",
+      reply: "yeah do it",
+      followUp: "done. car at 4:45",
       time: "11:47 PM"
     },
     {
       direction: "member",
-      first: "dishwasher leaking. dinner saturday.",
-      reply: "Plumber there in 90 min. Fixed today or replaced Friday.",
+      first: "dishwasher leaking everywhere",
+      reply: "plumber there in 90 min. shut-off valve is under the sink, left side",
       time: "6 min"
     }
   ];
